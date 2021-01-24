@@ -358,9 +358,11 @@ total_gallons_consumed_per_day = round(total_gallons_consumed_per_day, 1)
 total_litres_consumed_per_day = round(total_gallons_consumed_per_day * 4.546, 1)
 print("Total Daily Fuel Consumption = ",total_gallons_consumed_per_day, "gallons = ", total_litres_consumed_per_day, "litres")
 diesel_volumetric_energy_density = 175 # MJ/gallon
-total_daily_energy_consumption = total_gallons_consumed_per_day * diesel_volumetric_energy_density
+diesel_efficiency = 0.41
+hydrogen_efficiency = 0.60
+total_daily_energy_consumption = total_gallons_consumed_per_day * diesel_volumetric_energy_density * diesel_efficiency
 print("Total Daily Energy Consumption = ",total_daily_energy_consumption, "MJ")
-daily_hydrogen_consumption_gallons = round((1/hydrogen_volumetric_energy_density) * total_daily_energy_consumption, 1)
+daily_hydrogen_consumption_gallons = round((1/hydrogen_volumetric_energy_density) * (1/hydrogen_efficiency) * total_daily_energy_consumption, 1)
 daily_hydrogen_consumption_litres = round(daily_hydrogen_consumption_gallons * 4.546, 1)
 print("Daily Hydrogen Required = ",daily_hydrogen_consumption_gallons, "gallons = ",daily_hydrogen_consumption_litres, "litres")
 hydrogen_mass = round(daily_hydrogen_consumption_litres * 0.001 * hydrogen_density, 1)
